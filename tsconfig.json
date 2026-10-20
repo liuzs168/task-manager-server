@@ -1,0 +1,37 @@
+// TypeScript 编译器配置文件(JSONC 格式,支持注释)
+{
+  // ---------- 编译选项 ----------
+  "compilerOptions": {
+    // 编译目标:ES2023,支持最新的 JS 语法特性
+    "target": "ES2023",
+    // 模块系统:ESNext,使用最新的 ES 模块规范(配合 ESM 的 import/export)
+    "module": "ESNext",
+    // 模块解析策略:bundler,适合由打包工具(或 tsx/esbuild 等)处理的现代项目
+    "moduleResolution": "bundler",
+    // 源码根目录:src,import 路径均相对于此目录
+    "rootDir": "src",
+    // 编译输出目录:dist,编译后的 JS 文件存放于此
+    "outDir": "dist",
+    // 严格模式:启用 strictNullChecks、noImplicitAny 等所有严格检查
+    "strict": true,
+    // ES 模块互操作:允许对 CommonJS 模块使用默认导入
+    "esModuleInterop": true,
+    // 强制文件名大小写一致:避免跨平台(Windows/Linux)大小写问题
+    "forceConsistentCasingInFileNames": true,
+    // 跳过第三方库的类型检查:加快编译速度,忽略 node_modules 内 .d.ts 的错误
+    "skipLibCheck": true,
+    // 索引访问严格检查:obj[key] 的类型为 T | undefined,防止未定义访问
+    "noUncheckedIndexedAccess": true,
+    // 路径别名:@/ 映射到 src 目录,import 时可用 @/lib/prisma 代替相对路径
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  // 需要编译的文件:src 目录下所有 TypeScript 文件
+  "include": ["src/**/*.ts"],
+  // 排除的目录:依赖包、编译产物、测试文件
+  "exclude": ["node_modules", "dist", "tests"],
+  "tsc-alias": {
+    "resolveFullPaths": true
+  }
+}
